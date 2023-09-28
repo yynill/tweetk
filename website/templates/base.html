@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+</head>
+
+<body>
+
+    <!-- header -->
+    <div class="navbar">
+        <a class="logo" href="/">Logo</a>
+        <div class="nav_links">
+            <p id="get_started"><a href="/sign-up">GET STARTED FOR FREE</a></p>
+        </div>
+    </div>
+    <!-- header -->
+
+    <!-- show flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="flash_container">
+        <div class="flash error" role="alert">
+            {{ message }}
+            <button class="flash_close_btn" onclick="closeFlash(this)">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% else %}
+        <div class="flash success" role="alert">
+            {{ message }}
+            <button class="flash_close_btn" onclick="closeFlash(this)">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+
+    <!-- content -->
+    <div id="content">{% block content %}{% endblock %}</div>
+    <!-- content -->
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer__links">
+            <p class="links"><a href="/">Home</a></p>
+            <p class="links"><a href="/pricing">Pricing</a></p>
+            <p class="links">
+                <a href="https://twitter.com/messages/compose?recipient_id=1616939222086082561"
+                    class="twitter-dm-button" data-screen-name="@yynill">
+                    Contact</a>
+            </p>
+        </div>
+
+        <p class="website__rights">
+            Copyright © 2023 👅. No rights reserved.
+        </p>
+        <p class="love">Built with ❤️ by <a class="love_twitter" target="_blank"
+                href="https://twitter.com/yynill">@yynill</a></p>
+    </div>
+    <!-- Footer -->
+
+    <script type="text/javascript" src='../static/index.js'></script>
+    <link rel="stylesheet" href="../static/style.css">
+
+</body>
+
+
+
+
+
+</html>

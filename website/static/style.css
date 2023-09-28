@@ -1,0 +1,138 @@
+body {
+    font-family: sans-serif;
+    background-color: #EFEFEF;
+}
+
+/* header */
+
+.navbar {
+    background-color: #191923;
+    overflow: hidden;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    float: left;
+    padding: 10px;
+    font-size: 24px;
+    color: #EFEFEF;
+    text-decoration: none;
+    transition: all ease-in-out 0.2s;
+}
+
+.logo:hover {
+    color: #3454D1;
+}
+
+#get_started a {
+    display: inline-block;
+    padding: 5px;
+    background-color: #3454D1;
+    color: #EFEFEF;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#get_started a:hover {
+    background-color: #EFEFEF;
+}
+
+/* footer */
+
+.footer {
+    background-color: #191923;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__links {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 8px 16px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.links a {
+    color: #EFEFEF;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.links a:hover {
+    color: #3454D1;
+}
+
+.website__rights {
+    color: #EFEFEF;
+    font-size: 10px;
+    font-weight: lighter;
+}
+
+.love {
+    color: #EFEFEF;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.love_twitter {
+    color: #EFEFEF;
+    text-decoration: none;
+    transition: all ease-in-out 0.2s;
+}
+
+.love_twitter:hover {
+    color: #3454D1;
+    text-decoration: underline;
+}
+
+/* flashes */
+
+.flash_container {
+    width: 100%;
+    height: auto;
+}
+
+.flash {
+    border: #191923;
+    border-radius: 10px;
+    background-color: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.error {
+    color: rgb(255, 81, 81);
+}
+
+.success {
+    color: green;
+}
+
+.flash_close_btn {
+    height: 30px;
+    width: 30px;
+    font-size: 20px;
+    border-radius: 20px;
+    padding: 0;
+}

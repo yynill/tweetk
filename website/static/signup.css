@@ -1,0 +1,110 @@
+.page {
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {}
+
+.twitter {
+    font-size: 20px;
+    color: #3454D1;
+    opacity: 50%;
+}
+
+.inputs {
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field {
+    height: 40px;
+    width: 100%;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+
+.field .at-sign {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ffffff;
+    background: #3454D1;
+    padding: 10px 10px;
+    border-radius: 20px 0 0 20px;
+}
+
+.field input {
+    height: 100%;
+    width: calc(100% - 40px);
+    padding-left: 44px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    background: #dde1e7;
+    color: #595959;
+    border-radius: 20px;
+}
+
+.field label {
+    position: absolute;
+    top: 50%;
+    left: 46px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #666666;
+}
+
+.field input:valid~label {
+    opacity: 0;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+    margin: 15px 5px;
+    padding: 0 31px;
+    width: auto;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #dde1e7;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #595959;
+    transition: all ease 0.2s;
+}
+
+button:hover {
+    background-color: #3453d1bd;
+    color: #ffffff;
+}
+
+#showPasswordButton {
+    background-color: #c3c3c3;
+}
+
+.switch {
+    color: #595959;
+    font-size: 15px;
+}
+
+.switch a {
+    color: #3454D1;
+    text-decoration: none;
+}

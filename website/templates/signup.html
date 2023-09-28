@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Sign-Up{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    <div class="page">
+        <h1>Sign Up With 𝕏 <span class="twitter">(Twitter)</span></h1>
+        <hr>
+        <div class="inputs">
+            <div class="field">
+                <span class="at-sign">@</span>
+                <input type="text" id="twitter_tag" name="twitter_tag" required>
+                <label>twitter tag</label>
+            </div>
+            <div class="field">
+                <span class="at-sign">🔑</span>
+                <input type="password" id="password" name="password" required>
+                <label>Password</label>
+            </div>
+            <div class="field">
+                <span class="at-sign">🤮</span>
+                <input type="password" id="password2" name="password2" required>
+                <label>Repeat Password</label>
+            </div>
+            <div class="buttons">
+                <button id="showPasswordButton">Show Password</button>
+                <button type="submit">Sign in</button>
+            </div>
+        </div>
+        <p class="switch">Already have an account? <a href="/login">Log In</a></p>
+    </div>
+</form>
+
+<link rel="stylesheet" href="./static/signup.css">
+<script type="text/javascript" src="{{ url_for('static', filename='signup.js') }}"></script>
+
+<script>
+    const passwordInput = document.getElementById("password");
+    const passwordInput2 = document.getElementById("password2");
+    const showPasswordButton = document.getElementById("showPasswordButton");
+
+    showPasswordButton.addEventListener("click", () => {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            passwordInput2.type = "text";
+            showPasswordButton.innerText = "Hide Password "
+        } else {
+            passwordInput.type = "password";
+            passwordInput2.type = "password";
+            showPasswordButton.innerText = "Show Password "
+        }
+    });
+</script>
+
+{% endblock %}
