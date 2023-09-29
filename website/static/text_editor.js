@@ -2,10 +2,14 @@ const textarea = document.getElementById('tweet_textarea');
 const tweet_preview = document.getElementById('tweet_preview');
 const rightDiv = document.querySelector('.right');
 
-textarea.addEventListener('input', function (event) {
+textarea.addEventListener('input', function () {
     updateTweetPreview();
     scrollRightDivToBottom();
 });
+
+window.onload = function () {
+    updateTweetPreview();
+};
 
 function updateTweetPreview() {
     const message = textarea.value;

@@ -17,13 +17,17 @@ def home():
 def logged_in_home():
     if request.method == 'POST':
         message = request.form.get('message')
-        if len(message) < 1:
-            flash('Message is to short', category='error')
+        num_messages = Message.query.filter_by(user_id=current_user.id).count()
+        if num_messages < 3:
+            if len(message) < 1:
+                flash('Message is to short', category='error')
+            else:
+                new_message = Message(message=message, user_id=current_user.id)
+                db.session.add(new_message)
+                db.session.commit()
+                flash('Message has been saved.', category='success')
         else:
-            new_message = Message(message=message, user_id=current_user.id)
-            db.session.add(new_message)
-            db.session.commit()
-            flash('Message has been saved.', category='success')
+            flash('Limit of 3 Message templates reached', category='error')
 
     return render_template('logged_in_home.html', user=current_user)
 

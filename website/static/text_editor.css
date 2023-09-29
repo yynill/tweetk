@@ -4,6 +4,10 @@
     justify-content: center;
 }
 
+h1 {
+    text-align: center;
+}
+
 .right,
 .left {
     display: flex;
@@ -22,6 +26,7 @@
     font-size: 16px;
     font-family: inherit;
     width: 400px;
+    height: 420px;
     resize: none;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -49,6 +54,10 @@ button[type="submit"] {
     padding: 10px;
     font-size: 14px;
     margin-top: 20px;
+}
+
+.message_display {
+    white-space: pre-line;
 }
 
 .preview_contaner {

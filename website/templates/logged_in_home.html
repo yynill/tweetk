@@ -9,23 +9,23 @@
     <div class="message_page">
 
         <div class="left">
-            <textarea name="message" id="tweet_textarea" cols="60" rows="20" placeholder="Hello! 
-            
+            <textarea name="message" id="tweet_textarea" cols="60" rows="20">Hallo,
+
 Thanks for reaching out 👋😊 I get a lot of messages + do my best to reply. 
-            
+
 Here’s some answers to common questions. 
-            
+
 (1) 🙋🏻‍♂️ Yes, we do have a course! 👉 https://nothingcourse.com
-            
+
 (2) 👩🏽‍💻 No we don't do 1on1 consulting. But check out our Discord. We discuss nothing there: https://discord.nothing.com
-             
+
 (3) 📧 Check out our Newsletter for daily updates about nothing: 
 👉 https://nothing_newsletter.com
-            
+
 If you have questions about the anything, please email ✉️  nothing@email.com and we’ll take care of you  
-            
+
 Much love, 🙏😊
-mr. Nobody"></textarea>
+mr. Nobody"</textarea>
             <div>
                 <button type="submit">Set Message</button>
             </div>
@@ -55,7 +55,10 @@ mr. Nobody"></textarea>
                     <span>Delete</span>
                 </button>
             </div>
-            {{ message.message }}
+            <hr>
+            <div class="message_display">
+                {{ message.message | safe }}
+            </div>
         </div>
         {% endfor %}
     </div>
