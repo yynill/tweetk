@@ -11,10 +11,17 @@
 
     <!-- header -->
     <div class="navbar">
-        <a class="logo" href="/">Logo</a>
+        <a href="/">
+            <img class="logo" src="../static/logo/tweek_b.jpg">
+        </a>
         <div class="nav_links">
-            <p id="get_started"><a href="/sign-up">GET STARTED FOR FREE</a></p>
+
+            {% if user.is_authenticated %}
             <p id="get_started"><a href="/logout">Log Out</a></p>
+            {% else %}
+            <p id="get_started"><a href="/sign-up">GET STARTED FOR FREE</a></p>
+            {% endif %}
+
         </div>
     </div>
     <!-- header -->
@@ -65,8 +72,8 @@
         <p class="website__rights">
             Copyright © 2023 👅. No rights reserved.
         </p>
-        <p class="love">Built with ❤️ by <a class="love_twitter" target="_blank"
-                href="https://twitter.com/yynill">@yynill</a></p>
+        <p class="love">Built with ❤️ by <a class="love_twitter" href="https://twitter.com/yynill"
+                target="_blank">@yynill</a></p>
     </div>
     <!-- Footer -->
 

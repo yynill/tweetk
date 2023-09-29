@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    background-color: #EFEFEF;
+    background-color: #FFFFFF;
 }
 
 /* header */
@@ -14,24 +14,17 @@ body {
     align-items: center;
 }
 
-.logo {
-    float: left;
-    padding: 10px;
-    font-size: 24px;
-    color: #EFEFEF;
-    text-decoration: none;
-    transition: all ease-in-out 0.2s;
-}
 
-.logo:hover {
-    color: #3454D1;
+.logo {
+    width: 100px;
+    height: auto;
 }
 
 #get_started a {
     display: inline-block;
     padding: 5px;
     background-color: #3454D1;
-    color: #EFEFEF;
+    color: #FFFFFF;
     text-decoration: none;
     font-weight: bold;
     font-size: 12px;
@@ -40,7 +33,7 @@ body {
 }
 
 #get_started a:hover {
-    background-color: #EFEFEF;
+    background-color: #FFFFFF;
 }
 
 /* footer */
@@ -72,7 +65,7 @@ body {
 }
 
 .links a {
-    color: #EFEFEF;
+    color: #FFFFFF;
     text-decoration: none;
     transition: 0.3s ease-in-out;
 }
@@ -82,19 +75,19 @@ body {
 }
 
 .website__rights {
-    color: #EFEFEF;
+    color: #FFFFFF;
     font-size: 10px;
     font-weight: lighter;
 }
 
 .love {
-    color: #EFEFEF;
+    color: #FFFFFF;
     font-size: 15px;
     font-weight: lighter;
 }
 
 .love_twitter {
-    color: #EFEFEF;
+    color: #FFFFFF;
     text-decoration: none;
     transition: all ease-in-out 0.2s;
 }
@@ -156,4 +149,26 @@ button:hover {
     font-size: 20px;
     border-radius: 20px;
     padding: 0;
+}
+
+.home_logo {
+    height: 300px;
+    width: auto;
+}
+
+.pricing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pricing_green {
+    color: #3454D1;
+}
+
+.free_img {
+    background-color: #3454D1;
+    margin: 100px;
+    height: 200px;
 }
