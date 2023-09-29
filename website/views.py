@@ -1,5 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, flash
 from flask_login import login_required,  current_user
+from .models import Message
+from . import db
+
 
 views = Blueprint('views', __name__)
 
@@ -9,9 +12,19 @@ def home():
     return render_template('home.html', user=current_user)
 
 
-@views.route('/home')
+@views.route('/home', methods=['GET', 'POST'])
 @login_required
 def logged_in_home():
+    if request.method == 'POST':
+        message = request.form.get('message')
+        if len(message) < 1:
+            flash('Message is to short', category='error')
+        else:
+            new_message = Message(message=message, user_id=current_user.id)
+            db.session.add(new_message)
+            db.session.commit()
+            flash('Message has been saved.', category='success')
+
     return render_template('logged_in_home.html', user=current_user)
 
 

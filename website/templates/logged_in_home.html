@@ -3,6 +3,53 @@
 
 {% block content %}
 
-<h1>logged_in_home</h1>
+<form method="POST">
+    <h1>Write your meessage</h1>
 
+    <div class="message_page">
+
+        <div class="left">
+            <textarea name="message" id="tweet_textarea" cols="60" rows="20" placeholder="Hello! 
+            
+Thanks for reaching out 👋😊 I get a lot of messages + do my best to reply. 
+            
+Here’s some answers to common questions. 
+            
+(1) 🙋🏻‍♂️ Yes, we do have a course! 👉 https://nothingcourse.com
+            
+(2) 👩🏽‍💻 No we don't do 1on1 consulting. But check out our Discord. We discuss nothing there: https://discord.nothing.com
+             
+(3) 📧 Check out our Newsletter for daily updates about nothing: 
+👉 https://nothing_newsletter.com
+            
+If you have questions about the anything, please email ✉️  nothing@email.com and we’ll take care of you  
+            
+Much love, 🙏😊
+mr. Nobody"></textarea>
+            <div>
+                <button type="submit">Set Message</button>
+            </div>
+        </div>
+
+        <div class="right">
+            <img class="profile_img" src="../static/logo/preview.png" alt="">
+            <div class="tweet_preview" id="tweet_preview">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- display notes prototype -->
+    <ul class="list" id="notes">
+        {% for message in user.message %}
+        <li>
+            {{ message.message }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <script src="../static/text_editor.js"></script>
+    <link rel="stylesheet" href="./static/text_editor.css">
+
+</form>
 {% endblock %}
