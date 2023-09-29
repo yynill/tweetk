@@ -30,6 +30,9 @@ def sign_up():
             db.session.add(new_user)
             db.session.commit()
 
+            # update login_user before automatic login. else login_user would be none
+            user = User.query.filter_by(twitter_tag=twitter_tag).first()
+
             flash('Account created!', category='success')
 
             login_user(user, remember=True)

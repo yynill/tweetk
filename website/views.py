@@ -12,10 +12,10 @@ def home():
     return render_template('home.html', user=current_user)
 
 
-@views.route('/home', methods=['GET', 'POST'])
+@views.route('/home', methods=['GET', 'POST', 'PUT'])
 @login_required
 def logged_in_home():
-    if request.method == 'POST':
+    if request.method == 'PUT':
         message = request.form.get('message')
         if len(message) < 1:
             flash('Message is to short', category='error')
