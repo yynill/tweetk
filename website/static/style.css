@@ -33,7 +33,7 @@ body {
 }
 
 #get_started a:hover {
-    background-color: #FFFFFF;
+    background-color: gray;
 }
 
 /* footer */
@@ -171,4 +171,71 @@ button:hover {
     background-color: #3454D1;
     margin: 100px;
     height: 200px;
+}
+
+/* Home Page */
+
+.home_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.home_logo {
+    height: 100px;
+    margin-top: 200px;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.welcome_text {
+    font-size: 18px;
+    width: 500px;
+    line-height: 1.5;
+    margin: 20px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.home_preview {
+    height: 500px;
+    border: #191923 3px solid;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.infos {
+    display: flex;
+    flex-direction: row;
+}
+
+.info_block {
+    background-color: #f0f0f0;
+    width: 250px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.info_title {
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.info_hr {
+    border: 1px solid #ccc;
+    margin: 15px 0;
+}
+
+.info_content {
+    font-size: 14px;
+    line-height: 1.5;
 }
