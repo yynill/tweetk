@@ -15,3 +15,12 @@ function updateTweetPreview() {
 function scrollRightDivToBottom() {
     rightDiv.scrollTop = rightDiv.scrollHeight;
 }
+
+function delete_message(messageId) {
+    fetch("/delete-message", {
+        method: "POST",
+        body: JSON.stringify({ messageId: messageId }),
+    }).then((_res) => {
+        window.location.reload()
+    });
+}

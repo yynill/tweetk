@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required,  current_user
 from .models import Message
 from . import db
-
+import json
 
 views = Blueprint('views', __name__)
 
@@ -15,7 +15,7 @@ def home():
 @views.route('/home', methods=['GET', 'POST', 'PUT'])
 @login_required
 def logged_in_home():
-    if request.method == 'PUT':
+    if request.method == 'POST':
         message = request.form.get('message')
         if len(message) < 1:
             flash('Message is to short', category='error')
@@ -31,3 +31,16 @@ def logged_in_home():
 @views.route('/pricing')
 def pricing():
     return render_template('pricing.html', user=current_user)
+
+
+@views.route('/delete-message', methods=['POST'])
+def delete_message():
+    message = json.loads(request.data)
+    messageId = message['messageId']
+    message = Message.query.get(messageId)
+    if message:
+        if message.user_id == current_user.id:
+            db.session.delete(message)
+            db.session.commit()
+
+    return jsonify({})

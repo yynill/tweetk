@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<form method="PUT">
+<form method="POST">
     <h1>Write your meessage</h1>
 
     <div class="message_page">
@@ -40,13 +40,25 @@ mr. Nobody"></textarea>
     </div>
 
     <!-- display notes prototype -->
-    <ul class="list" id="notes">
+    <h1>Your Message Templates</h1>
+    <div class="preview_contaner">
         {% for message in user.message %}
-        <li>
+
+        <div class="tweet_preview">
+            <div class="buttons">
+
+                <button type="button" class="active_btn" onClick="activateMessage({{ message.id }})">
+                    <span>Set Active</span>
+                </button>
+
+                <button type="button" class="delete_btn" onClick="delete_message({{ message.id }})">
+                    <span>Delete</span>
+                </button>
+            </div>
             {{ message.message }}
-        </li>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 
     <script src="../static/text_editor.js"></script>
     <link rel="stylesheet" href="./static/text_editor.css">

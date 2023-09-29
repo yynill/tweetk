@@ -50,3 +50,36 @@ button[type="submit"] {
     font-size: 14px;
     margin-top: 20px;
 }
+
+.preview_contaner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.delete_btn,
+.active_btn {
+    padding: 0 10px;
+    margin: 5px;
+    height: 30px;
+    font-size: 12px;
+}
+
+.delete_btn:hover {
+    background-color: red;
+}
+
+.active_btn:hover {
+    background-color: green;
+}
