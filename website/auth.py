@@ -1,3 +1,4 @@
+import tweepy
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -67,3 +68,50 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('auth.login'))
+
+# twitter authentication
+
+
+Api_key = "AbGCD0cnJviDRWHD2Eo5tl938"
+Api_key_secret = "kpo8bf1CqH9O5gGuUzqzO95Qg4xr7Jn5j9p4WIFvjEhmVPyZIJ"
+
+
+@auth.route('/twitter_login', methods=['GET', 'POST'])
+def twitter_login():
+    if request.method == 'POST':
+        return redirect(url_for('auth.redirect_to_twitter'))
+    else:
+        return render_template('twitter_login.html', user=current_user)
+
+
+@auth.route('/twitter_callback', methods=['GET'])
+def twitter_callback():
+    # Handle Twitter callback
+    oauth_verifier = request.args.get('oauth_verifier')
+    oauth1_user_handler = tweepy.OAuth1UserHandler(Api_key, Api_key_secret)
+    access_token, access_token_secret = oauth1_user_handler.get_access_token(
+        oauth_verifier)
+
+    print('Success:')
+    print(access_token)
+    print(access_token_secret)
+    # Store the access token and access token secret in your database or session
+    # Optionally, you can associate them with the user who just authenticated
+
+    # Redirect to a success page or perform any necessary actions
+    return redirect(url_for('auth.success_page'))
+
+
+@auth.route('/redirect', methods=['GET', 'POST'])
+def redirect_to_twitter():
+    # 3-legged OAuth - To authenticate as a user other than your developer account
+    oauth1_user_handler = tweepy.OAuth1UserHandler(
+        Api_key, Api_key_secret,
+        # redirecting to this url - after login process finished
+        callback='https://www.google.com/'
+        # redirect(auth.twitter_callback)
+    )
+b
+    authorisation_URL = oauth1_user_handler.get_authorization_url(
+        signin_with_twitter=True)
+    return redirect(authorisation_URL)

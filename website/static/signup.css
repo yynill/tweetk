@@ -108,3 +108,26 @@ button:hover {
     color: #3454D1;
     text-decoration: none;
 }
+
+
+/* login wit twitter  */
+
+
+.form-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-button-container {
+    margin-top: 10px;
+}
