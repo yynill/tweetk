@@ -36,6 +36,22 @@ body {
     background-color: gray;
 }
 
+.nav_menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile_pic {
+    background-color: #3454D1;
+    height: 30px;
+    width: 30px;
+    border: #FFFFFF 1px solid;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
 /* footer */
 
 .footer {

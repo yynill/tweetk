@@ -14,7 +14,7 @@ def home():
 
 @views.route('/home', methods=['GET', 'POST', 'PUT'])
 @login_required
-def logged_in_home():
+def home_login():
     if request.method == 'POST':
         message = request.form.get('message')
         num_messages = Message.query.filter_by(user_id=current_user.id).count()
@@ -29,7 +29,7 @@ def logged_in_home():
         else:
             flash('Limit of 3 Message templates reached', category='error')
 
-    return render_template('logged_in_home.html', user=current_user)
+    return render_template('home_login.html', user=current_user)
 
 
 @views.route('/pricing')

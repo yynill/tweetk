@@ -17,9 +17,12 @@
         <div class="nav_links">
 
             {% if user.is_authenticated %}
-            <p id="get_started"><a href="/logout">Log Out</a></p>
+            <div class="nav_menu">
+                <p id="get_started"><a href="/logout">Log Out</a></p>
+                <div class="profile_pic"></div>
+            </div>
             {% else %}
-            <p id="get_started"><a href="/sign-up">GET STARTED FOR FREE</a></p>
+            <p id="get_started"><a href="/login">GET STARTED FOR FREE</a></p>
             {% endif %}
 
         </div>
