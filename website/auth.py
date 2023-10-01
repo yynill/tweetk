@@ -46,15 +46,57 @@ def twitter_callback():
         oauth_verifier
     )
 
+    api = tweepy.API(oauth1_user_handler)
+
+    # get user information
+    user_info = api.verify_credentials()
+
+    user_id = user_info.id
+    user_profile_picture_url = user_info.profile_image_url.replace(
+        "_normal", "_400x400")
+    user_name = user_info.name
+    user_twitter_tag = user_info.screen_name
+    user_description = user_info.description
+    user_join_date = user_info.created_at
+    user_followers_count = user_info.followers_count
+
+    print(user_profile_picture_url)
    # Store the access token and access token secret in  database
     user = User.query.filter_by(access_token=access_token).first()
     if user:
+        # Check if any of the user's data has changed
+        if (
+            user.user_id != user_id or
+            user.user_profile_picture_url != user_profile_picture_url or
+            user.user_name != user_name or
+            user.user_twitter_tag != user_twitter_tag or
+            user.user_description != user_description or
+            user.user_join_date != user_join_date or
+            user.user_followers_count != user_followers_count
+        ):
+            # Update the user's data in the database
+            user.user_id = user_id
+            user.user_profile_picture_url = user_profile_picture_url
+            user.user_name = user_name
+            user.user_twitter_tag = user_twitter_tag
+            user.user_description = user_description
+            user.user_join_date = user_join_date
+            user.user_followers_count = user_followers_count
+            db.session.commit()
+
         flash('Logged in!', category='success')
         login_user(user, remember=True)
     else:
         new_user = User(
             access_token=access_token,
-            access_token_secret=access_token_secret
+            access_token_secret=access_token_secret,
+            user_id=user_id,
+            user_profile_picture_url=user_profile_picture_url,
+            user_name=user_name,
+            user_twitter_tag=user_twitter_tag,
+            user_description=user_description,
+            user_join_date=user_join_date,
+            user_followers_count=user_followers_count
         )
         db.session.add(new_user)
         db.session.commit()
@@ -62,7 +104,7 @@ def twitter_callback():
         login_user(new_user, remember=True)
 
     # Redirect to a success page or perform any necessary actions
-    return render_template('home_login.html', user=current_user)
+    return redirect('/home')
 
 
 @auth.route('/redirect', methods=['GET', 'POST'])

@@ -13,15 +13,15 @@ class Message(db.Model):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-
     access_token = db.Column(db.String(255))
     access_token_secret = db.Column(db.String(255))
     message = db.relationship('Message')
 
-   # twitter_tag = db.Column(db.String(500), unique=True, default=None)
-   # twitter_name = db.Column(db.String(500), unique=True, default=None)
-   # twitter_pic = db.Column(db.String(150), unique=True, default=None)
-
-   # twitter_bio = db.Column(db.String(1000), unique=True, default=None)
-   # twitter_follower_count = db.Column(db.String(1000), unique=True, default=None)
-   # twitter_joined date = db.Column(db.String(1000), unique=True, default=None)
+    # Add additional fields for user information
+    user_id = db.Column(db.BigInteger)
+    user_profile_picture_url = db.Column(db.String(255))
+    user_name = db.Column(db.String(255))
+    user_twitter_tag = db.Column(db.String(255))
+    user_description = db.Column(db.String(255))
+    user_join_date = db.Column(db.DateTime)
+    user_followers_count = db.Column(db.Integer)

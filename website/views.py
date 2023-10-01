@@ -38,6 +38,7 @@ def pricing():
 
 
 @views.route('/delete-message', methods=['POST'])
+@login_required
 def delete_message():
     message = json.loads(request.data)
     messageId = message['messageId']
