@@ -12,7 +12,7 @@ window.onload = function () {
 };
 
 function updateTweetPreview() {
-    const message = textarea.value;
+    const message = textarea.value.trim() // Trim leading and trailing whitespace
     tweet_preview.innerText = message;
 }
 
@@ -22,6 +22,15 @@ function scrollRightDivToBottom() {
 
 function delete_message(messageId) {
     fetch("/delete-message", {
+        method: "POST",
+        body: JSON.stringify({ messageId: messageId }),
+    }).then((_res) => {
+        window.location.reload()
+    });
+}
+
+function activate_message(messageId) {
+    fetch("/activate-message", {
         method: "POST",
         body: JSON.stringify({ messageId: messageId }),
     }).then((_res) => {

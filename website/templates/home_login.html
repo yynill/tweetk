@@ -32,7 +32,24 @@ mr. Nobody"</textarea>
         </div>
 
         <div class="right">
-            <img class="profile_img" src="../static/logo/preview.png" alt="">
+            <div class="dm_banner">
+                <div class="dm_profile_pic">
+                    <img src="{{ user.user_profile_picture_url }}" alt="Profile Picture">
+                </div>
+                <div class="dm_text">
+                    <p class="dm_name">{{ user.user_name }}</p>
+                    <p class="dm_tag">@{{ user.user_twitter_tag }}</p>
+
+                    <p class="dm_description">{{ user.user_description }}</p>
+                    <p class="dm_gray_text">Joined {{ user.user_join_date.strftime('%B %Y') }} • {{
+                        user.user_followers_count }} Followers
+                    </p>
+                    <p class="dm_gray_text">Not followed by anyone you're following</p>
+                </div>
+                <br>
+                <br>
+                <hr class="dm_hr">
+            </div>
             <div class="tweet_preview" id="tweet_preview">
 
             </div>
@@ -42,22 +59,31 @@ mr. Nobody"</textarea>
     <!-- display notes prototype -->
     <h1>Your Message Templates</h1>
     <div class="preview_contaner">
-        {% for message in user.message %}
+        {% for msg in user.message %}
 
         <div class="tweet_preview">
-            <div class="buttons">
 
-                <button type="button" class="active_btn" onClick="activateMessage({{ message.id }})">
+            <div class="buttons">
+                {% if msg.active == True:%}
+                <div class="tweet_active">
+                    active
+                </div>
+                {% endif %}
+
+                {% if msg.active != True:%}
+                <button type="button" class="active_btn" onClick="activate_message({{ msg.id }})">
                     <span>Set Active</span>
                 </button>
-
-                <button type="button" class="delete_btn" onClick="delete_message({{ message.id }})">
+                {% endif %}
+                <button type="button" class="delete_btn" onClick="delete_message({{ msg.id }})">
                     <span>Delete</span>
                 </button>
             </div>
             <hr>
             <div class="message_display">
-                {{ user.user_profile_picture_url | safe }}
+
+
+                {{ msg.message }}
             </div>
         </div>
         {% endfor %}

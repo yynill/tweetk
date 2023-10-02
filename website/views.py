@@ -49,3 +49,15 @@ def delete_message():
             db.session.commit()
 
     return jsonify({})
+
+
+@views.route('/activate-message', methods=['POST'])
+@login_required
+def activate_message():
+    message = json.loads(request.data)
+    messageId = message['messageId']
+    message = Message.query.get(messageId)
+    if message:
+        if message.user_id == current_user.id:
+            message.activate()
+            flash("Message activated successfully.", category='success')
