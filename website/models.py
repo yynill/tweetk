@@ -29,3 +29,9 @@ class User(db.Model, UserMixin):
     user_description = db.Column(db.String(1000))
     user_join_date = db.Column(db.DateTime)
     user_followers_count = db.Column(db.Integer)
+
+
+class MessagedUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    already_messaged_user = db.Column(
+        db.String(255), unique=True, nullable=False)
