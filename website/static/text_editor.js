@@ -1,6 +1,7 @@
 const textarea = document.getElementById('tweet_textarea');
 const tweet_preview = document.getElementById('tweet_preview');
 const rightDiv = document.querySelector('.right');
+const setMessageBtn = document.getElementById('setMessageBtn');
 
 textarea.addEventListener('input', function () {
     updateTweetPreview();
@@ -37,3 +38,18 @@ function activate_message(messageId) {
         window.location.reload()
     });
 }
+
+function set_message() {
+    var message = document.getElementById("tweet_textarea").value.trim();
+    var formData = new FormData();
+    formData.append("message", message);
+
+    // Send a POST request to save the message
+    fetch("/save-message", {
+        method: "POST",
+        body: formData,
+    })
+        .then((_res) => {
+            window.location.reload()
+        })
+};

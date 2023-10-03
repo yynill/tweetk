@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, redirect
 from flask_login import login_required,  current_user
 from .models import Message
 from . import db
@@ -15,20 +15,6 @@ def home():
 @views.route('/home', methods=['GET', 'POST', 'PUT'])
 @login_required
 def home_login():
-    if request.method == 'POST':
-        message = request.form.get('message')
-        num_messages = Message.query.filter_by(user_id=current_user.id).count()
-        if num_messages < 3:
-            if len(message) < 1:
-                flash('Message is to short', category='error')
-            else:
-                new_message = Message(message=message, user_id=current_user.id)
-                db.session.add(new_message)
-                db.session.commit()
-                flash('Message has been saved.', category='success')
-        else:
-            flash('Limit of 3 Message templates reached', category='error')
-
     return render_template('home_login.html', user=current_user)
 
 
@@ -48,7 +34,7 @@ def delete_message():
             db.session.delete(message)
             db.session.commit()
 
-    return jsonify({})
+    return redirect('/home')
 
 
 @views.route('/activate-message', methods=['POST'])
@@ -60,4 +46,25 @@ def activate_message():
     if message:
         if message.user_id == current_user.id:
             message.activate()
+            db.session.commit()
             flash("Message activated successfully.", category='success')
+    return redirect('/home')
+
+
+@views.route('/save-message', methods=['GET', 'POST', 'PUT'])
+@login_required
+def save_message():
+    if request.method == 'POST':
+        message = request.form.get('message')
+        num_messages = Message.query.filter_by(user_id=current_user.id).count()
+        if num_messages < 3:
+            if len(message) < 1:
+                flash('Message is to short', category='error')
+            else:
+                new_message = Message(message=message, user_id=current_user.id)
+                db.session.add(new_message)
+                db.session.commit()
+                flash("Message has been saved.", category='success')
+        else:
+            flash("Limit of 3 Message templates reached", category='error')
+    return redirect('/home')
