@@ -4,6 +4,9 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from os import environ
+# from dotenv import load_dotenv
+# load_dotenv()
 
 auth = Blueprint('auth', __name__)
 
@@ -60,7 +63,6 @@ def twitter_callback():
     user_join_date = user_info.created_at
     user_followers_count = user_info.followers_count
 
-    print(user_profile_picture_url)
    # Store the access token and access token secret in  database
     user = User.query.filter_by(access_token=access_token).first()
     if user:
