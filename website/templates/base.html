@@ -74,6 +74,9 @@
                     class="twitter-dm-button" data-screen-name="@yynill">
                     Contact</a>
             </p>
+            {% if user.is_authenticated %}
+            <p class="links"><a href="/unsubscribe">Unsubscribe tweetk</a></p>
+            {% endif %}
         </div>
 
         <p class="website__rights">

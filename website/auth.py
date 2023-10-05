@@ -106,6 +106,7 @@ def twitter_callback():
         login_user(new_user, remember=True)
 
     # Redirect to a success page or perform any necessary actions
+    print('user logged in')
     return redirect('/home')
 
 

@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template, request, flash, jsonify, redirect
-from flask_login import login_required,  current_user
+from flask_login import login_required,  current_user, logout_user
 from .models import Message
 from . import db
 import json
+
 
 views = Blueprint('views', __name__)
 
@@ -68,3 +69,29 @@ def save_message():
         else:
             flash("Limit of 3 Message templates reached", category='error')
     return redirect('/home')
+
+
+@views.route('/unsubscribe', methods=['GET', 'POST'])
+@login_required
+def unsubscribe():
+    if request.method == 'POST':
+        return redirect('/delete-user')
+    return render_template('unsubscribe.html', user=current_user)
+
+
+@views.route('/delete-user', methods=['POST'])
+@login_required
+def delete_user():
+    # Delete the user's data from the database
+    user = current_user
+    db.session.delete(user)
+    db.session.commit()
+
+    # Log the user out
+    logout_user()
+
+    # Redirect to the home page or a confirmation page
+    flash("Your data has been deleted. Thank you for using our service.",
+          category='success')
+    print('user left service')
+    return redirect('/')
