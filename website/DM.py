@@ -5,8 +5,6 @@ from . import db
 
 
 def start_twitter_listener():
-    current_user = User.query.get(current_user.id)
-
     # Initialise API
     consumer_key = "AbGCD0cnJviDRWHD2Eo5tl938"
     consumer_secret = "kpo8bf1CqH9O5gGuUzqzO95Qg4xr7Jn5j9p4WIFvjEhmVPyZIJ"
@@ -18,15 +16,13 @@ def start_twitter_listener():
     auth.set_access_token(access_token, access_token_secret)
 
     api = tweepy.API(auth)
-
+    print('api active')
     # Listen to DMs
-
-    # make sure participant is only dm once
     already_messaged_users_list = set(
-        user.user_id for user in MessagedUser.query.all())
+        user.user_id for user in MessagedUser.query.all())  # make sure participant is only dm once
 
     class MyStreamListener(tweepy.StreamListener):
-        def on_event(self, event):
+        def on_event_status(self, event):
             # checks if chat is opened
             if event['event']['type'] == 'participant_join':
                 participant_id = event['event']['user_id']
@@ -47,13 +43,13 @@ def start_twitter_listener():
             user_id=user.id, active=True).first()
 
         api.send_direct_message(participant_id, active_message)
-
+        print('dm sent')
     # Instantiate the stream listener and start listening for events
     myStreamListener = MyStreamListener()
     myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener)
 
     # Start listening for user events
-    myStream.userstream()
+    myStream.tweepy.userstream()
 
-    # user is lokked in with tweetk
+    # user is logged in with tweetk
     # participant is a 3rd - messaging the user
