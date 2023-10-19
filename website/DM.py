@@ -33,7 +33,7 @@ def start_twitter_listener():
                         db.session.add(new_messaged_users)
                         db.session.commit()
                         print(' ')
-                        print('CHAT OPENED')
+                        print(f"New chat opened by user {new_messaged_users}")
 
         def send_initial_message(participant_id):
             user = User.query.get(current_user.id)
